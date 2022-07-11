@@ -377,17 +377,25 @@ na.omit(raw_data)</p>
 <h2>What is mean total number of steps taken per day?</h2>
 <p>steps_per_day &lt;- aggregate(main_data<span class="math inline">\(steps, by = list(Steps.Date =
 main_data\)</span>date), FUN = “sum”)</p>
-<p>hist(steps_per_day$x, col = “green”, breaks = 20, main = “Total
-number of steps taken each day”, xlab = “Number of steps per day”)</p>
-<p>mean_steps &lt;- mean(steps_per_day[,2]) print (mean_steps)</p>
+<p>png(file=“C:/Users/mmartins/Documents/GitHub/RepData_PeerAssessment1/Total
+number of steps taken each day.png”) hist(steps_per_day$x, col =
+“green”, breaks = 20, main = “Total number of steps taken each day”,
+xlab = “Number of steps per day”)</p>
+<p>dev.off() mean_steps &lt;- mean(steps_per_day[,2]) print
+(mean_steps)</p>
 <p>median_steps &lt;- median(steps_per_day[,2]) print (median_steps)</p>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level2">
 <h2>What is the average daily activity pattern?</h2>
 <p>avaraged_day &lt;- aggregate(main_data<span class="math inline">\(steps,  by = list(Interval =
-main_data\)</span>interval), FUN = “mean”) plot(avaraged_day<span class="math inline">\(Interval, avaraged_day\)</span>x, type = “l”, main
-= “Average daily activity pattern”, ylab = “Avarage number of steps
-taken”, xlab = “5-min intervals”)</p>
+main_data\)</span>interval), FUN = “mean”)</p>
+<p>png(file=“C:/Users/mmartins/Documents/GitHub/RepData_PeerAssessment1/Average
+daily activity pattern.png”)</p>
+<p>plot(avaraged_day<span class="math inline">\(Interval,
+avaraged_day\)</span>x, type = “l”, main = “Average daily activity
+pattern”, ylab = “Avarage number of steps taken”, xlab = “5-min
+intervals”)</p>
+<p>dev.off()</p>
 <p>interval_row &lt;- which.max(avaraged_day$x) max_interval &lt;-
 avaraged_day[interval_row,1] print (max_interval)</p>
 </div>
@@ -399,9 +407,13 @@ avaraged_day[interval_row,1] print (max_interval)</p>
 raw_data raw_data_filled<span class="math inline">\(steps &lt;-
 impute(raw_data\)</span>steps, fun=mean)</p>
 <p>steps_per_day_noNA &lt;- aggregate(raw_data_filled<span class="math inline">\(steps,  by = list(Steps.Date =
-raw_data_filled\)</span>date), FUN = “sum”) hist(steps_per_day_noNA$x,
-col = “green”, breaks = 20, main = “Total number of steps taken each day
-(filled data)”, xlab = “Number of steps per day”)</p>
+raw_data_filled\)</span>date), FUN = “sum”)</p>
+<p>png(file=“C:/Users/mmartins/Documents/GitHub/RepData_PeerAssessment1/Total
+number of steps taken each day (filled data).png”)</p>
+<p>hist(steps_per_day_noNA$x, col = “green”, breaks = 20, main = “Total
+number of steps taken each day (filled data)”, xlab = “Number of steps
+per day”)</p>
+<p>dev.off()</p>
 <p>mean_steps_noNA &lt;- mean(steps_per_day_noNA[,2]) print
 (mean_steps_noNA)</p>
 <p>median_steps_noNA &lt;- median(steps_per_day_noNA[,2]) print
@@ -418,10 +430,14 @@ raw_data_filled\)</span>day_type &lt;-
 factor(raw_data_filled$day_type)</p>
 <p>day_types_data &lt;- aggregate(steps ~ interval + day_type,
 data=raw_data_filled, mean)</p>
-<p>library(ggplot2) ggplot(day_types_data, aes(interval, steps)) +
-geom_line() + facet_grid(day_type ~ .) + xlab(“5-minute intervals”) +
-ylab(“Avarage number of steps taken”) + ggtitle(“Weekdays and weekends
-activity patterns”)</p>
+<p>library(ggplot2)</p>
+<p>png(file=“C:/Users/mmartins/Documents/GitHub/RepData_PeerAssessment1/Weekdays
+and weekends activity patterns.png”)</p>
+<p>ggplot(day_types_data, aes(interval, steps)) + geom_line() +
+facet_grid(day_type ~ .) + xlab(“5-minute intervals”) + ylab(“Avarage
+number of steps taken”) + ggtitle(“Weekdays and weekends activity
+patterns”)</p>
+<p>dev.off()</p>
 </div>
 
 

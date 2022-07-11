@@ -104,4 +104,3 @@ ggplot(day_types_data, aes(interval, steps)) +
         
 dev.off()
 
-
